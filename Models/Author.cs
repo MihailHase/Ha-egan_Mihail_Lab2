@@ -12,5 +12,8 @@ namespace Hașegan_Mihail_Lab2.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
+        [Display(Name = "Full Name")]
+        public string FullName => FirstName + " " + LastName;
+
     }
 }
