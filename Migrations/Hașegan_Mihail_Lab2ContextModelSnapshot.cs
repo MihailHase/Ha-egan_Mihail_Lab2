@@ -31,11 +31,9 @@ namespace Hașegan_Mihail_Lab2.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -64,7 +62,6 @@ namespace Hașegan_Mihail_Lab2.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
@@ -136,7 +133,7 @@ namespace Hașegan_Mihail_Lab2.Migrations
             modelBuilder.Entity("Hașegan_Mihail_Lab2.Models.Book", b =>
                 {
                     b.HasOne("Hașegan_Mihail_Lab2.Models.Author", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorID");
 
                     b.HasOne("Hașegan_Mihail_Lab2.Models.Publisher", "Publisher")
@@ -165,6 +162,11 @@ namespace Hașegan_Mihail_Lab2.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Hașegan_Mihail_Lab2.Models.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("Hașegan_Mihail_Lab2.Models.Book", b =>
